@@ -5,13 +5,17 @@
     become: true
   
     tasks:
+      - name: debug webserver_app var
+        debug:
+         vars: "{{ webserver_app }}"
+      
       - name: install tomcat
         include_role: 
           name: tomcat
-        when: webserver_app is "tomcat"
+        when: "{{ webserver_app }} is tomcat"
       
       - name: install httpd 
         include_role: 
           name: httpd
-        when: webserver_app is "httpd"
+        when: "{{ webserver_app }} is httpd"
          
