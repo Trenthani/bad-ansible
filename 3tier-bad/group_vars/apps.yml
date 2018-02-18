@@ -9,7 +9,7 @@ tomcat_index_dir:
   - /usr/share/tomcat/webapps/ROOT/index.html
   - /usr/share/tomcat/webapps/ansible/index.html
 
-webserver_app: "tomcat"
+webserver_app: tomcat
 
 ...
 
