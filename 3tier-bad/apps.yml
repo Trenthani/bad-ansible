@@ -6,10 +6,12 @@
   
     tasks:
       - name: install tomcat
-        include_role: tomcat
+        include_role: 
+          name: tomcat
         when: webserver_app is "tomcat"
       
       - name: install httpd 
-        include_role: httpd
+        include_role: 
+          name: httpd
         when: webserver_app is "httpd"
          
