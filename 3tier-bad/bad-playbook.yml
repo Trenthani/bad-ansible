@@ -13,17 +13,19 @@
 #   Bare variables
 #   No use of handlers
 
-- name: configuration
+- name: 3tier
   hosts: all
   gather_facts: false # remove later! speeds up testing
   become: true
 
-  tasks:
-  - name: enable repos
-    template:
+  pre_tasks:
+   - name: enable repos
+     template:
       src: ./open_three-tier-app.repo
       dest: /etc/yum.repos.d/open_three-tier-app.repo
       mode: 0644
+
+
 
 - name: deploy haproxy
   hosts: frontends
@@ -82,7 +84,7 @@
       path: /usr/share/tomcat/webapps/ROOT
       state: directory
 
-  - name: copy static index.html to tomcat webapps/ansible/index.html
+  - name: copy static index.html to tomcat webapps/ROOT/index.html
     template:
       src: index.html.j2
       dest: /usr/share/tomcat/webapps/ROOT/index.html

@@ -1,0 +1,11 @@
+---
+# 3tier playbook
+- name: configure 3tier site
+  hosts: all
+  become: true
+
+  tasks:
+    - import_playbook: all_config.yml 
+    - import_playbook: frontends.yml
+    - import_playbook: apps.yml
+    - import_playbook: appdbs.yml

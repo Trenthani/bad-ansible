@@ -1,2 +1,4 @@
 ---
 # defaults file for postgres
+postgresql_data_dir: /data/pgsql/data
+postgresql_data_dir2: /usr/local/pgsql/data

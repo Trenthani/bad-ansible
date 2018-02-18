@@ -1,2 +1,30 @@
 ---
 # tasks file for postgres
+- name: install postgres
+  yum:
+    name: postgresql-server
+    state: latest
+
+- name: enable and start postgresql service
+  service:
+    name: postgresql
+    state: started
+    enabled: true
+
+- name: tell user to finish setting up postgres
+  debug:
+    msg: "Either uncomment the postgres setup or manually login and initialize"
+
+- name: Check if PostgreSQL database is initialized.
+  stat:
+    #path: "{{ postgresql_data_dir }}/PG_VERSION"
+  register: pgdata_dir_version
+
+- name:  initilize postgresonly run the next 2 tasks once!
+  block: #only run the next 2 tasks once!
+    - name: initilize postgres
+      command: postgresql-setup initdb
+      
+    - name: initilize postgres some more
+      command: chkconfig postgresql on
+  when: not pgdata_dir_version.stat.exists

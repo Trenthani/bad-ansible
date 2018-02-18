@@ -1,0 +1,9 @@
+---
+# appdbs playbook
+- name: configure and manage appdbs
+  hosts: appdbs
+  become: true
+
+  tasks:
+    - include_role:
+       

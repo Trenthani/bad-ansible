@@ -1,0 +1,9 @@
+---
+  # apps playbook
+  - name: configure and manage apps
+    hosts: apps
+    become: true
+  
+    tasks:
+      - include_role:
+         

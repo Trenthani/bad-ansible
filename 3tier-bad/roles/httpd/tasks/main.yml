@@ -1,0 +1,12 @@
+---
+# tasks file for httpd
+- name: install httpd
+  yum:
+   name: httpd
+   state: latest
+
+- name: enable and start httpd at boot
+  service:
+   name: httpd
+   state: started
+   enabled: yes

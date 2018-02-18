@@ -1,0 +1,9 @@
+---
+  # frontends playbook
+  - name: configure and manage frontends
+    hosts: frontends
+    become: true
+  
+    tasks:
+      - include_role:
+         
