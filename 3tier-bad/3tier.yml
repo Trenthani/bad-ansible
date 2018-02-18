@@ -1,7 +1,7 @@
 ---
 # 3tier playbook
 - name: configure 3tier site
-  hosts: localhsot
+  hosts: all
   
 - import_playbook: common.yml 
 - import_playbook: frontends.yml
