@@ -24,6 +24,8 @@
       mode: 0644
     notify: restart tomcat service
     with_items: "{{ tomcat_index_dir }}"
+    tags:
+      - copy_index
   
   
   # - name: copy static index.html to tomcat webapps/ansible/index.html
