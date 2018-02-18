@@ -32,5 +32,11 @@ appdb1.{GUID}.internal ansible_ssh_host=appdb1.{GUID}.example.opentlc.com
 [support]
 support1.{GUID}.internal ansible_ssh_host=support1.{GUID}.example.opentlc.com
 
+## These are the support
+[bastion]
+bastion.{GUID}.internal 
+ansible_ssh_host=support1.{GUID}.example.opentlc.com 
+
+
 
 
