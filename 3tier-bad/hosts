@@ -1,11 +1,8 @@
-[all:vars]
-GUID=7c8c
-
-[internal:vars]
-
 ###########################################################################
 ### Ansible Vars
 ###########################################################################
+[all:vars]
+GUID=7c8c
 timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user
@@ -17,7 +14,6 @@ frontends
 apps
 appdbs
 support
-
 
 [frontends]
 ## These are the frontends
