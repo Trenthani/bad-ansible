@@ -21,7 +21,7 @@ support
 
 [frontends]
 ## These are the frontends
-frontend1.7c8c.example.opentlc.com
+frontend1.7c8c.internal ansible_ssh_host=frontend1.7c8c.example.opentlc.com
 
 [apps]
 ## These are the apps
