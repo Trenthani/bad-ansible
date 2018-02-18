@@ -34,8 +34,8 @@ support1.{GUID}.internal ansible_ssh_host=support1.{GUID}.example.opentlc.com
 
 ## These are the support
 [bastion]
-bastion.{GUID}.internal 
-ansible_ssh_host=support1.{GUID}.example.opentlc.com 
+bastion.{GUID}.internal ansible_ssh_host=bastion.{GUID}.example.opentlc.com 
+
 
 
 
