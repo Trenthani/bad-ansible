@@ -23,7 +23,7 @@
       dest: "{{ item }}"
       mode: 0644
     notify: restart tomcat service
-    with_itmes: "{{ tomcat_index_dir }}"
+    with_items: "{{ tomcat_index_dir }}"
   
   
   # - name: copy static index.html to tomcat webapps/ansible/index.html
