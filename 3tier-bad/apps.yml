@@ -5,5 +5,11 @@
     become: true
   
     tasks:
-      - include_role:
+      - name: install tomcat
+        include_role: tomcat
+        when: webserver_app is "tomcat"
+      
+      - name: install httpd 
+        include_role: httpd
+        when: webserver_app is "httpd"
          

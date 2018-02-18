@@ -1,5 +1,5 @@
 ---
-#SOW configurrations
+#common configurrations
 - name: common config for all servers
   hosts: all
   become: true
