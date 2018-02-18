@@ -7,7 +7,7 @@
     tasks:
       - name: debug webserver_app var
         debug:
-         vars: "{{ webserver_app }}"
+         var: "{{ webserver_app }}"
       
       - name: install tomcat
         include_role: 
