@@ -6,4 +6,5 @@
 - import_playbook: common.yml 
 - import_playbook: frontends.yml
 - import_playbook: apps.yml
+  tags: app
 - import_playbook: appdbs.yml
