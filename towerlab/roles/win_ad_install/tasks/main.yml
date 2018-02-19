@@ -21,6 +21,7 @@
   win_reboot:
     msg: reboot initiated by ansible
   when: (domain_name_result.reboot_required == true) 
+  ignore_errors: true
 
 - name: list domains test
   win_command: nltest /dclist:ad1.94d9.example.opentlc.com 
