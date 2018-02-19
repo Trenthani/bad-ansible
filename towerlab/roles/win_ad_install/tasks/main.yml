@@ -16,6 +16,12 @@
        dns_domain_name: "{{ ssh_host }}"
        safe_mode_password: "{{ ansible_password }}"
       register: domain_name_result
+      ignore_failure: true
+
+    - name: show status
+      debug:
+        var: domain_name_result.stderr
+      when: domain_name_result.rc is 1
 
     - name: win reboot
       win_reboot:
@@ -25,12 +31,11 @@
     - name: win reboot
       win_reboot:
        msg: reboot initiated by ansible
-      when: domain_name_result.reboot.stderr contains "needs to be started"
-
-- name: list domains test
-  shell: nltest /dclist:"{{ ad_domain_name }}" 
-  retries: 10
-  delay: 5
+  always:
+    - name: list domains test
+      shell: nltest /dclist:"{{ ad_domain_name }}" 
+      retries: 10
+      delay: 5
   
 
 
