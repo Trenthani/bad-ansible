@@ -1,0 +1,61 @@
+
+###########################################################################
+### Ansible Vars
+###########################################################################
+[GenericExample:vars]
+GUID=94d9
+timeout=60
+ansible_become=yes
+ansible_ssh_user=ec2-user
+
+
+[GenericExample:children]
+towers
+frontends
+apps
+appdbs
+windows
+support
+
+## These are the towers
+[towers]
+tower1."{{ GUID }}".internal public_host_name=tower1."{{ GUID }}".example.opentlc.com ssh_host=ec2-34-198-104-74.compute-1.amazonaws.com
+tower2."{{ GUID }}".internal public_host_name=tower2."{{ GUID }}".example.opentlc.com ssh_host=ec2-34-200-66-224.compute-1.amazonaws.com
+tower3."{{ GUID }}".internal public_host_name=tower3."{{ GUID }}".example.opentlc.com ssh_host=ec2-34-238-207-50.compute-1.amazonaws.com
+
+## These are the frontends
+[frontends]
+frontend1."{{ GUID }}".internal ssh_host=ec2-52-73-44-99.compute-1.amazonaws.com
+
+## These are the apps
+[apps]
+app1."{{ GUID }}".internal ssh_host=ec2-35-168-204-108.compute-1.amazonaws.com
+app2."{{ GUID }}".internal ssh_host=ec2-54-156-25-83.compute-1.amazonaws.com
+
+## These are the appdbs
+[appdbs]
+appdb1."{{ GUID }}".internal ssh_host=ec2-35-172-101-126.compute-1.amazonaws.com
+
+## These are the activedirectory servers
+[windows]
+ad1.94d9.internal ssh_host=ad1.94d9.example.opentlc.com ansible_password=jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==
+
+
+## These are the supporthosts
+[support]
+support1."{{ GUID }}".internal ssh_host=ec2-34-194-29-198.compute-1.amazonaws.com
+support2."{{ GUID }}".internal ssh_host=ec2-35-170-227-164.compute-1.amazonaws.com
+
+## These are the bastion servers
+[bastions]
+bastion ssh_host=bastion."{{ GUID }}".example.opentlc.com
+
+[windows:vars]
+ansible_connection=winrm
+ansible_port=5986
+ansible_ssh_port=5986
+ansible_user=Administrator
+ansible_ssh_user=Administrator
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_transport=basic
+ansible_become=false
