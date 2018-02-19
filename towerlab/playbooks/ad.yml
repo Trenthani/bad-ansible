@@ -2,4 +2,4 @@
 - hosts: windows
   
   roles:
-    - win_ad_install
+    - ../roles/win_ad_install
