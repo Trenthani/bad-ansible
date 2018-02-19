@@ -1,0 +1,20 @@
+---
+#setting up the environment
+- hosts: bastion
+  name: fetch goodies bastion
+  become: true
+  vars:
+    goodies:
+     - name: pem
+       src: "/root/.ssh/{{ GUID }}key.pem"
+     - name: inventory
+       src: /etc/ansible/hosts
+
+  tasks:
+    - name: fetch goodies
+      fetch:
+        src: "{{ item.src }}"
+        dest: ./temp
+      with_items: "{{ goodies }}"
+
+...

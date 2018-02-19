@@ -1,0 +1,29 @@
+---
+- name: Wintel lab setup
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: install packages
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+         - python-devel
+         - krb5-devel
+         - krb5-libs
+         - python-pip
+         - krb5-workstation
+         - gcc
+
+
+    - name: install pywinrm
+      pip:
+        name: pywinrm
+        state: latest
+
+
+          
+          
+        

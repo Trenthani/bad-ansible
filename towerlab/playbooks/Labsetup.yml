@@ -1,0 +1,33 @@
+---
+  - hosts: localhost
+    connection: local
+    become: true
+  
+    tasks:
+      - name: create temp dir
+        file:
+          path: /temp
+          state: directory
+  
+  - hosts: bastion
+    become: true
+          
+    tasks:
+     - include_role:
+         name: labsetup
+         tasks_from: get.yml
+           
+    
+  - hosts: localhost
+    connection: local
+    become: true
+    
+    tasks:
+     - include_role:
+        name: labsetup
+        tasks_from: put.yml
+
+     - include_role:
+        name: labsetup
+        tasks_from: localwinsetup.yml
+       tags: win_setup

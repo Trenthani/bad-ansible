@@ -1,0 +1,5 @@
+---
+# handlers file for win_ad_install
+- name: win reboot
+  win_reboot:
+    msg: reboot initiated by ansible
