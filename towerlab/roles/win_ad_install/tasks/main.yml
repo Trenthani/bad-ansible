@@ -8,7 +8,7 @@
 
 - name: debug
   debug:
-    var: ssh_host 
+    var: inventory_hostname[host] 
 
 - name: error handling
   block:

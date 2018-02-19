@@ -38,7 +38,7 @@ appdb1."{{ GUID }}".internal ssh_host=ec2-35-172-101-126.compute-1.amazonaws.com
 
 ## These are the activedirectory servers
 [windows]
-ad1.94d9.internal ssh_host=ad1.94d9.example.opentlc.com ansible_password=jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==
+ad1.94d9.internal ssh_host=ad1.94d9.example.opentlc.com ansible_password="{{ vault_ansible_password }}"
 
 
 ## These are the supporthosts
@@ -50,12 +50,3 @@ support2."{{ GUID }}".internal ssh_host=ec2-35-170-227-164.compute-1.amazonaws.c
 [bastions]
 bastion ssh_host=bastion."{{ GUID }}".example.opentlc.com
 
-[windows:vars]
-ansible_connection=winrm
-ansible_port=5986
-ansible_ssh_port=5986
-ansible_user=Administrator
-ansible_ssh_user=Administrator
-ansible_winrm_server_cert_validation=ignore
-ansible_winrm_transport=basic
-ansible_become=false
