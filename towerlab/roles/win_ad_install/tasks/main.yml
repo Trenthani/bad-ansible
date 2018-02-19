@@ -14,7 +14,7 @@
 
 - name: domain name
   win_domain:
-    dns_domain_name: "{{ ssh_host }}"
+    dns_domain_name: "{{ ad_domain_name }}"
     safe_mode_password: "{{ ansible_password }}"
   register: domain_name_result
   ignore_errors: true
@@ -27,7 +27,7 @@
 
 
 - name: list domains test
-  shell: nltest /dclist:"{{ ad_domain_name }}" 
+  win_shell: nltest /dclist:"{{ ad_domain_name }}" 
   retries: 10
   delay: 5
   
