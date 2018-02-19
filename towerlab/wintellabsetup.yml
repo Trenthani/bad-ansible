@@ -6,15 +6,15 @@
 
   tasks:
     - name: install packages
-      apt:
+      yum:
         name: "{{ item }}"
         state: latest
       with_items:
-         - python-dev
-         - libkrb5-dev
-         - krb5-user
+         - python-devel
+         - krb5-devel
+         - krb5-libs
          - python-pip
-         - build-essential
+         - krb5-workstation
          - gcc
 
 
