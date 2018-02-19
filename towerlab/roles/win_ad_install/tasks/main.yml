@@ -19,13 +19,6 @@
   register: domain_name_result
   ignore_errors: true
 
-- name: show status
-  debug:
-    var: domain_name_result.stderr
-  when: 
-    - domain_name_result.rc == 1
-    - domain_name_result | ok
-
 - name: win reboot
   win_reboot:
     msg: reboot initiated by ansible
