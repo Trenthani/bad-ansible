@@ -29,7 +29,7 @@
         msg: reboot initiated by ansible
       
 - name: list domains test
-  win_command: nltest /dclist:ad1.94d9.example.opentlc.com 
+  win_command: "nltest /dclist:ad1.{{ GUID }}.example.opentlc.com"
   retries: 10
   delay: 5
   
