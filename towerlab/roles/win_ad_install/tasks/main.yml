@@ -24,7 +24,7 @@
     - name: show status
       debug:
         var: domain_name_result.stderr
-      when: domain_name_result.rc is 1
+      when: domain_name_result.rc == 1
 
     - name: win reboot
       win_reboot:
