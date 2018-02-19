@@ -5,6 +5,10 @@
     name: AD-Domain-Services
     state: present
 
+- name: debug
+  debug:
+    msg: ad1.${GUID}.example.opentlc.com 
+
 - name: domain name
   win_domain:
    dns_domain_name: ad1.${GUID}.example.opentlc.com
