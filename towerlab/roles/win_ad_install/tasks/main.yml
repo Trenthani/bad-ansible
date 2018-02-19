@@ -16,7 +16,7 @@
        dns_domain_name: "{{ ssh_host }}"
        safe_mode_password: "{{ ansible_password }}"
       register: domain_name_result
-      ignore_failure: true
+      ignore_errors: true
 
     - name: show status
       debug:
