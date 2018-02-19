@@ -2,7 +2,7 @@
 ### Ansible Vars
 ###########################################################################
 [all:vars]
-GUID=0fc7
+GUID=8bf0
 timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user

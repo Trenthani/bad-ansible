@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: create temp dir
+      file:
+        path: /temp
+        state: directory
+      
+- import_playbook: getpemkey.yml
+
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: move key to .ssh dir
+      copy:
+        src: "temp/bastion/root/.ssh/{{ GUID }}key.pem"
+        dest: "/home/trentm/.ssh/{{ GUID }}key.pem"
+        owner: trentm
+        mode: 0400
+
+    - name: delete temp dir
+      file:
+        path: ./temp
+        state: absent
