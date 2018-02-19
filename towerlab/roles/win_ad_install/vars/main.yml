@@ -1,2 +1,3 @@
 ---
 # vars file for win_ad_install
+include_vars: ../my_ad_vars.yml
