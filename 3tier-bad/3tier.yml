@@ -1,10 +1,17 @@
 ---
 # 3tier playbook
 - name: configure 3tier site
-  hosts: all
+  hosts: 3tierapp
   
 - import_playbook: common.yml 
+  tags:
+    - common
 - import_playbook: frontends.yml
+  tags:
+    - frontend
 - import_playbook: apps.yml
-  tags: app
+  tags:
+    - apps
 - import_playbook: appdbs.yml
+  tags:
+    - appdbs

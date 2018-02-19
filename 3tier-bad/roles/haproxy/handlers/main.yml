@@ -1,6 +1,6 @@
 ---
 #handlers for haproxy
-- name: enable HAProxy
+- name: restart HAProxy
   service:
     name: haproxy
     state: restarted

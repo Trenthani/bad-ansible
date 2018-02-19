@@ -1,7 +1,7 @@
 ---
 #common configurrations
 - name: common config for all servers
-  hosts: all
+  hosts: 3tierapp
   become: true
 
   tasks:

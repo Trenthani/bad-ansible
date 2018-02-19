@@ -1,2 +1,2 @@
-app1.{{ GUID }}.internal
-app2.{{ GUID }}.internal
+app1
+app2
