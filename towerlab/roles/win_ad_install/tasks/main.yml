@@ -7,7 +7,7 @@
 
 - name: domain name
   win_domain:
-   dns_domain_name: ad1."{{GUID}}".example.opentlc.com
+   dns_domain_name: ad1.${GUID}.example.opentlc.com
    safe_mode_password: "{{ ansible_password }}"
   notify: win reboot
 
