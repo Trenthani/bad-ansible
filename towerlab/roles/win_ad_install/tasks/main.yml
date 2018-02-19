@@ -1,5 +1,8 @@
 ---
 # tasks file for win_ad_install
+
+- include_vars: my_ad_vars.yml
+
 - name: install AD-Domain-Services
   win_feature:
     name: AD-Domain-Services
