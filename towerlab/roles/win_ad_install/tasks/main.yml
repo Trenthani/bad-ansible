@@ -7,9 +7,15 @@
 
 - name: domain name
   win_domain:
-   dns_domain_name: ad1."{{ GUID }}".example.opentlc.com
-   safe_mode_password: jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==
+   dns_domain_name: ad1."{{GUID}}".example.opentlc.com
+   safe_mode_password: "{{ ansible_password }}"
   notify: win reboot
+
+- name: list domains test
+  shell: nltest /dclist:"{{ ad_domain_name }}" 
+  retries: 10
+  delay: 5
+  
 
 
 
