@@ -1,7 +1,0 @@
----
-- hosts: windows
-  vars:
-    ad_domain_name: ad1.${GUID}.example.opentlc.com
-    
-  roles:
-    - ../roles/win_ad_install
