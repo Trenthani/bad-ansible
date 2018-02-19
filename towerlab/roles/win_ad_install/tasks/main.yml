@@ -23,7 +23,7 @@
   win_reboot:
     msg: reboot initiated by ansible
   when: (domain_name_result.reboot is required) or 
-        (domain_name_result.stderr.find('restart') != -1) 
+        ((domain_name_result.failed == true) and (domain_name_result.stderr('restart') != -1))
 
 
 - name: list domains test
