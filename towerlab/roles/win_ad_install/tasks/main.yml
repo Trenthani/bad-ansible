@@ -7,7 +7,7 @@
 
 - name: debug
   debug:
-    msg: ad1.${GUID}.example.opentlc.com 
+    var: "{{ ssh_host }}"
 
 - name: domain name
   win_domain:
