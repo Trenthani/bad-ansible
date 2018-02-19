@@ -10,19 +10,28 @@
   debug:
     var: ssh_host 
 
-- name: domain name
-  win_domain:
-    dns_domain_name: "{{ ad_domain_name }}"
-    safe_mode_password: "{{ ansible_password }}"
-  register: domain_name_result
-  ignore_errors: true
+- name: error handling
+  block:
+    - name: domain name
+      win_domain:
+        dns_domain_name: "{{ ad_domain_name }}"
+        safe_mode_password: "{{ ansible_password }}"
+      register: domain_name_result
+      ignore_errors: true
+      
+    - name: win reboot
+      win_reboot:
+        msg: reboot initiated by ansible
+      when: (domain_name_result.reboot_required == true) 
+      ignore_errors: true
 
-- name: win reboot
-  win_reboot:
-    msg: reboot initiated by ansible
-  when: (domain_name_result.reboot_required == true) 
-  ignore_errors: true
+  rescue:
+    - name: win reboot
+      win_reboot:
+        msg: reboot initiated by ansible
+      when: (domain_name_result.reboot_required == true)
 
+      
 - name: list domains test
   win_command: nltest /dclist:ad1.94d9.example.opentlc.com 
   retries: 10
