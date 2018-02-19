@@ -25,7 +25,7 @@
 
 
 - name: list domains test
-  win_command: nltest /dclist:"{{ ad_domain_name }}" 
+  win_command: nltest /dclist:ad1.94d9.example.opentlc.com 
   retries: 10
   delay: 5
   
