@@ -1,5 +1,10 @@
 ---
 # tasks file for win_prep
+- name: install pip
+  yum:
+    name: pip
+    state: lastest
+
 - name: ubuntu install tasks
   include_tasks: ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
