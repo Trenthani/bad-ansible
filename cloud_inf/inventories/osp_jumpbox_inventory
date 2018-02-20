@@ -1,0 +1,7 @@
+##Inventory file
+
+[private:children]
+workstation
+
+[workstation]
+workstation-7827.rhpds.opentlc.com ansible_host=workstation-7827.rhpds.opentlc.com ssh_host=workstation-7827.rhpds.opentlc.com

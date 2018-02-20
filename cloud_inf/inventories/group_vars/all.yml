@@ -1,0 +1,4 @@
+---
+# common vars
+GUID: 7827
+ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
