@@ -1,0 +1,8 @@
+---
+# add ad users
+- hosts: ad1
+  vars_files:
+    - user_vars.yml
+  
+  roles:
+    - win_ad_user
