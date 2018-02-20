@@ -2,7 +2,7 @@
 # tasks file for win_prep
 - name: install pip
   yum:
-    name: pip
+    name: python-pip
     state: latest
 
 - name: ubuntu install tasks
