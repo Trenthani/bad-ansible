@@ -1,7 +1,0 @@
----
-  - hosts: windows
-      
-    tasks:
-      - include_role: 
-          name: win_ad_install
-          tasks_from: remove.yml
