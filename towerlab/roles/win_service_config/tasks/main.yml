@@ -1,7 +1,7 @@
 ---
 # tasks file for win_service_config
 - name: install chocolately packages
-  win_chocolately:
+  win_chocolatey:
     name: "{{ item }}"
     state: latest
     params: "{{ parameters }}"

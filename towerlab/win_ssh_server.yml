@@ -2,7 +2,7 @@
 # install and configure openssh
 - hosts: windows
   vars_files: 
-    - ssh_vars.yml
+    - ./ssh_vars.yml
 
   roles:
     - win_service_config
