@@ -2,8 +2,12 @@
 # tasks file for win_prep
 - name: install pip
   yum:
-    name: python-pip
+    name: "{{ item }}"
     state: latest
+  with_items:
+    - gcc
+    - kernel-devel
+    - python-pip
 
 - name: ubuntu install tasks
   include_tasks: ubuntu.yml
@@ -11,7 +15,7 @@
 
 - name: Redhat install tasks
   include_tasks: rhel.yml
-  when: ansible_distribution == 'Redhat'
+  when: ansible_distribution == 'RedHat'
 
 - name: pip install
   pip:
