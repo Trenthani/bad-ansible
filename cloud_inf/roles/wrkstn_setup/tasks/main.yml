@@ -1,0 +1,41 @@
+---
+# tasks file for wrkstn_setup
+- name: copy open.repo to jumphost
+  copy:
+    remote_src: "ctrl-{{ GUID }}.rhpds.opentlc.com:/etc/yum.repos.d/open.repo"
+    dest: /etc/yum.repos.d/open.repo
+    
+- name: install "{{ item }}" python-openstackclient
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: 
+    - python-openstackclient
+
+- name: copy keystonerc_admin to /root/
+  copy:
+    remote_src: ctrl.example.com:/root/keystonerc_admin
+    dest: /root/
+  become: true
+
+- name: copy openstack.pub to jumphost
+  get-url:
+    url: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+    dest: ~/temp/
+    
+- name: add opentstack.pub to authorized_keys
+  athorized_key: 
+    key: ~/temp/openstack.pub
+    user: trentm-datacom.co.nz
+  become: true
+
+- name: place cloud.yaml in ~/.config/openstack
+  template:
+    src: cloud.yaml.j2
+    dest: ~/.config/openstack/cloud.yaml
+
+- name: install shade
+  pip:
+    name: shade
+    state: latest
+  
