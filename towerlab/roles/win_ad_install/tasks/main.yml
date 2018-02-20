@@ -32,6 +32,14 @@
   win_command: "nltest /dclist:ad1.{{ GUID }}.example.opentlc.com"
   retries: 10
   delay: 5
+  register: nltest_result
+  tags: debug
+
+- name: debug
+  debug:
+    var: nltest_result
+  tags: debug
+
   
 
 

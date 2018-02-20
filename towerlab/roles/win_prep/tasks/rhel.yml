@@ -1,0 +1,11 @@
+---
+#RHEL install tasks
+- name: yum installs
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: 
+    - python-devel 
+    - krb5-devel 
+    - krb5-libs 
+    - krb5-workstation

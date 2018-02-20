@@ -4,25 +4,17 @@
   connection: local
   become: true
 
+  roles:
+    - win_prep
+
+- name: Test windows setup for kerberos
+  hosts: windows
+
   tasks:
-    - name: install packages
-      yum:
-        name: "{{ item }}"
-        state: latest
-      with_items:
-         - python-devel
-         - krb5-devel
-         - krb5-libs
-         - python-pip
-         - krb5-workstation
-         - gcc
-
-
-    - name: install pywinrm
-      pip:
-        name: pywinrm
-        state: latest
-
+    - name: test kinit
+      command: "kinit administrator@AD1.${GUID_CAP}.EXAMPLE.OPENTLC.COM {{ vault_ansible_password }}"
+      delegate_to: localhost
+      tags: test
 
           
           

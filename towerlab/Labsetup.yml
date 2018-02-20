@@ -6,28 +6,31 @@
     tasks:
       - name: create temp dir
         file:
-          path: /temp
+          path: ./temp
           state: directory
   
   - hosts: bastion
     become: true
           
     tasks:
-     - include_role:
-         name: labsetup
-         tasks_from: get.yml
-           
-    
+     - name: fetch key file 
+       fetch:
+         src: "/root/.ssh/{{ GUID }}key.pem"
+         dest: ./temp
+   
   - hosts: localhost
     connection: local
     become: true
     
     tasks:
-     - include_role:
-        name: labsetup
-        tasks_from: put.yml
+      - name: move pem file to .ssh dir
+        copy: 
+          src: "./temp/bastion/root/.ssh/{{ GUID }}key.pem"
+          dest: /home/trentm/.ssh/
+          owner: trentm
+          mode: 0400
 
-     - include_role:
-        name: labsetup
-        tasks_from: localwinsetup.yml
-       tags: win_setup
+      - name: remove temp dir
+        file:
+          path: ./temp
+          state: absent

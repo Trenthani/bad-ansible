@@ -1,0 +1,30 @@
+---
+# tasks file for win_prep
+- name: ubuntu install tasks
+  include_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Redhat install tasks
+  include_tasks: rhel.yml
+  when: ansible_distribution == 'Redhat'
+
+- name: pip install
+  pip:
+    name: pywinrm[kerberos]
+    state: latest
+
+# - name: set krb5.conf.d/ansible.conf
+#   copy:
+#     src: ansible.conf
+#     dest: /etc/krb5.conf.d/
+
+- name: set krb5.con.d/ansible.conf
+  template:
+    src: ansible.conf.j2
+    dest: /etc/krb5.conf.d/ansible.conf
+  tags: krb5
+
+
+
+
+  
