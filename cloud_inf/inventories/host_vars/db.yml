@@ -1,0 +1,10 @@
+---
+name: db
+Metadata: group=appdbs, deployment_name=QA
+Flavor: m2.small
+Keypair: ansible_ssh
+Networks: 
+  Public: 10.10.10.0/24 
+  Private: 20.20.20.0/24
+Image: rhel-guest
+Ports Open: 5432/tcp, 22/tcp, icmp

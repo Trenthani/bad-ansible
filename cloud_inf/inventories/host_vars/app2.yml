@@ -1,0 +1,10 @@
+---
+name: app2
+Metadata: group=apps, deployment_name=QA
+Flavor: m2.small
+Keypair: ansible_ssh
+Networks: 
+  Public: 10.10.10.0/24 
+  Private: 20.20.20.0/24
+Image: rhel-guest
+Ports Open: 8080/tcp, 22/tcp, icmp
