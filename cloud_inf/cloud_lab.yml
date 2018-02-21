@@ -1,0 +1,4 @@
+---
+#stringing all the plays together
+- include_playbook: wrkstn_setup.yml
+- include_playbook: copy_rhel_image.yml

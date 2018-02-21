@@ -1,11 +1,10 @@
 ---
 # tasks file for wrkstn_setup
 - name: copy open.repo to jumphost
-  copy:
-    remote_src: "ctrl-{{ GUID }}.rhpds.opentlc.com:/etc/yum.repos.d/open.repo"
-    dest: /etc/yum.repos.d/open.repo
+  command: "scp ctrl-7827.rhpds.opentlc.com:/etc/yum.repos.d/open.repo /etc/yum.repos.d/open.repo"
+  become: true
     
-- name: install "{{ item }}" python-openstackclient
+- name: install {{ item }} python-openstackclient
   yum:
     name: "{{ item }}"
     state: latest
@@ -13,29 +12,61 @@
     - python-openstackclient
 
 - name: copy keystonerc_admin to /root/
-  copy:
-    remote_src: ctrl.example.com:/root/keystonerc_admin
-    dest: /root/
+  command: "scp ctrl.example.com:/root/keystonerc_admin /root/"
   become: true
 
-- name: copy openstack.pub to jumphost
-  get-url:
-    url: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+- name: create ~/temp/ 
+  file: 
+    path: ~/temp
+    state: directory
+  become: true
+ 
+# - name: copy openstack.pub to jumphost
+#   get_url:
+#     url: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+#     dest: ~/temp/
+#   become: true
+
+# # - name: add openstack.pub to authorized_keys
+# #   authorized_key: 
+# #     key: "/root/temp/openstack.pub"
+# #     user: cloud-user
+# #   become: true
+
+
+- name: get epel-release
+  get_url:
+    url: wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     dest: ~/temp/
+
+- name: enable epel-release
+  yum:
+    name: ~/temp/epel-release-latest-*.noarch.rpm
+    state: present
+
+- name: remove temp dir
+  file:
+    path: ~/temp
+    state: absent
+  become: true
     
-- name: add opentstack.pub to authorized_keys
-  athorized_key: 
-    key: ~/temp/openstack.pub
-    user: trentm-datacom.co.nz
+
+- name: install pip
+  yum: 
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items:
+    - python-pip
+
+- name: pip install shade
+  pip:
+    name: shade
+    state: latest
   become: true
 
 - name: place cloud.yaml in ~/.config/openstack
   template:
     src: cloud.yaml.j2
     dest: ~/.config/openstack/cloud.yaml
-
-- name: install shade
-  pip:
-    name: shade
-    state: latest
   
