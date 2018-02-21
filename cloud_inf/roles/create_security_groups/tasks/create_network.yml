@@ -1,0 +1,9 @@
+---
+#tasks to create networks
+- name: create networks
+  os_network:
+    name: "{{ item.key }}"
+    cloud: "{{ cloud }}"
+    external: "{{ item.value.external }}"
+    state: present
+  

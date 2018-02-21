@@ -1,0 +1,17 @@
+---
+#tasks to create security group rules
+- name: create security group rule
+  os_security_group_rule:
+    cloud: "{{ os_cloud }}"
+    security_group: "{{ item.sg_name }}"
+    protocol: "{{ item.protocol }}"
+    port_range_min: "{{ item.port_mx }}"
+    port_range_max: "{{ item.port_mn }}"
+  when: item.protocol != "icmp"
+
+- name: create security group rule - icmp
+  os_security_group_rule:
+    cloud: "{{ os_cloud }}"
+    security_group: "{{ item.sg_name }}"
+    protocol: "{{ item.protocol }}"
+  when: item.protocol == "icmp"

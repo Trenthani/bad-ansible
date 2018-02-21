@@ -1,0 +1,5 @@
+---
+# defaults file for provision_instances
+os_keypair: ""
+os_cloud: ""
+os_image: ""

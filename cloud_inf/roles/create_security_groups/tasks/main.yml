@@ -1,0 +1,13 @@
+---
+# tasks file for create_security_groups
+- include_tasks: create_networks.yml
+  with_dict: "{{ networks }}"
+
+- include_tasks: create_subnets.yml
+  with_dict: "{{ networks }}"
+
+- include_tasks: create_security_groups.yml
+  with_items: "{{ sg_groups }}"
+      
+- include_tasks: create_security_group_rule.yml
+  with_items: "{{ sg_group_rules }}"

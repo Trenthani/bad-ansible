@@ -1,0 +1,8 @@
+---
+#tasks to create security groups
+- name: create security group
+  os_security_group:
+    cloud: "{{ os_cloud }}"
+    state: present
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"

@@ -1,0 +1,28 @@
+---
+# tasks file for provision_instances
+- name: check vars are provided
+  block:
+    - name: check vars_ os_keypair
+      assert:
+        that: 
+          - os_keypair != ""
+          - os_cloud != ""
+          - os_image != ""
+
+- name: upload image
+  include_tasks: ./copy_rhel_image.yml
+
+- name: create os_keypair
+  include_tasks: create_key_pair.yml
+ 
+- name: provision common os_servers
+  os_server:
+    flavor: "{{ item.flavor }}"
+    key_name: "{{ item.keypair }}"
+    meta: "{{ item.metadata }}"
+    nics: 
+      - net-id: "{{ network_ids[0].net_id }}"
+      - net-id: "{{ network_ids[1].net_id }}"
+    image: "{{ item.image }}"
+    name: "{{ item.name }}"
+  with_items: "{{ cloud_infra_vars_os_servers }}"

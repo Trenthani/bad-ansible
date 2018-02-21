@@ -1,0 +1,39 @@
+---
+# defaults file for create_security_groups
+---
+  #Network vars
+  #cloud: ospcloud
+  networks:
+    # internal_physical:
+    #   external: true
+    #   cidr: 10.10.10.0/24
+    #   route: 
+    #     dest: 0.0.0.0/0
+    #     next: 192.168.0.0 
+    #   dns: 
+    #     dns1: 8.8.8.7 
+    #     dns2: 8.8.8.8 
+    # private:
+    #   external: false
+    #   cidr: 20.20.20.0/24
+    #   route: 
+    #     dest: 0.0.0.0/0
+    #     next: 192.168.0.0 
+    #   dns: 
+    #     dns1: 8.8.8.7
+    #     dns2: 8.8.8.8 
+  
+  network_ids:
+  #  - {name: public, net_id: f94cc9ec-8935-4df7-9147-d1e54ee8d588}
+   # - {name: private, net_id: be51fa3f-ac3e-4e55-b305-e73988e8ce2f}
+  
+  sg_groups:
+   # - {name: sg_app, state: present, desc: app security group for cloud infrastructure lab}
+  
+  #Security group rules
+  sg_group_rules:
+    #- {sg_name: sg_app, state: present, protocol: tcp, port_mx: 8080, port_mn: 8080}
+    
+  
+   
+  

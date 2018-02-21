@@ -1,0 +1,6 @@
+---
+#Setup playbook for Openstack jumphost
+- hosts: workstation
+
+  roles:
+    - wrkstn_setup
