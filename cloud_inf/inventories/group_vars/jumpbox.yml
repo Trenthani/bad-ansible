@@ -1,0 +1,4 @@
+---
+#jumpbox vars
+
+public_key_file: /home/cloud-user/.ssh/osp_keypair.pub

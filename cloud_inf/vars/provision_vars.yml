@@ -1,0 +1,6 @@
+---
+# common vars
+os_keypair: osp_lab_key
+os_cloud: ospcloud
+os_image: rhel-guest
+

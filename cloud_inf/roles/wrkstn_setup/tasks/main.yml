@@ -50,7 +50,6 @@
     state: absent
   become: true
     
-
 - name: install pip
   yum: 
     name: "{{ item }}"
@@ -68,5 +67,5 @@
 - name: place cloud.yaml in ~/.config/openstack
   template:
     src: cloud.yaml.j2
-    dest: ~/.config/openstack/cloud.yaml
+    dest: /etc/openstack/clouds.yaml
   

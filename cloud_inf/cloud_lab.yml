@@ -2,3 +2,6 @@
 #stringing all the plays together
 - include_playbook: wrkstn_setup.yml
 - include_playbook: copy_rhel_image.yml
+- include_playbook: create_networks.yml
+- include_playbook: key_pair.yml
+- include_playbook: provision_env.yml

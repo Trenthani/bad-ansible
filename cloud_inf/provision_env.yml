@@ -1,0 +1,48 @@
+---
+#provision environment
+- hosts: jumphost
+  vars_files:
+    - ./vars/provision_vars.yml
+    - ./vars/network_vars.yml
+    - ./vars/cloud_infra_vars.yml
+
+  tasks:
+    - name: create security group
+      os_security_group:
+        cloud: "{{ os_cloud }}"
+        state: present
+        name: "{{ item.name }}"
+        description: "{{ item.desc }}"
+      with_items: "{{ sg_groups }}"
+          
+    - name: create security group rule
+      os_security_group_rule:
+        cloud: "{{ os_cloud }}"
+        security_group: "{{ item.sg_name }}"
+        protocol: "{{ item.protocol }}"
+        port_range_min: "{{ item.port_mx }}"
+        port_range_max: "{{ item.port_mn }}"
+      with_items: "{{ sg_group_rules }}"
+      when: item.protocol != 'icmp'
+
+    - name: create security group rule - icmp
+      os_security_group_rule:
+        cloud: "{{ os_cloud }}"
+        security_group: "{{ item.sg_name }}"
+        protocol: "{{ item.protocol }}"
+      with_items: "{{ sg_group_rules }}"
+      when: item.protocol == 'icmp'
+      
+    - name: provision common os_servers
+      os_server:
+        flavor: "{{ item.flavor }}"
+        keypair: "{{ item.keypair }}"
+        meta: "{{ item.metadata }}"
+        nics: 
+         - net-id: "{{ network_ids[0].net_id }}"
+         - net-id: "{{ network_ids[1].net_id }}"
+        image: "{{ item.image }}"
+        name: "{{ item.name }}"
+      with_items: "{{ cloud_infra_vars_os_servers }}"
+        
+  

@@ -1,0 +1,13 @@
+---
+#security group vars
+sg_group_rules:
+  - {sg_name: sg_app, state: present, protocol: tcp, port_mx: 8080, port_mn: 8080}
+  - {sg_name: sg_app, state: present, protocol: tcp, port_mx: 22, port_mn: 22}
+  - {sg_name: sg_app, state: present, protocol: icmp, port_mx: "", port_mn: ""}
+  - {sg_name: sg_db, state: present, protocol: tcp, port_mx: 5432, port_mn: 5432}
+  - {sg_name: sg_db, state: present, protocol: tcp, port_mx: 22, port_mn: 22}
+  - {sg_name: sg_db, state: present, protocol: icmp, port_mx: "", port_mn: ""}
+  - {sg_name: sg_frtd, state: present, protocol: tcp, port_mx: 80, port_mn: 80}
+  - {sg_name: sg_frtd, state: present, protocol: tcp, port_mx: 22, port_mn: 22}
+  - {sg_name: sg_frtd, state: present, protocol: icmp, port_mx: "", port_mn: ""}
+

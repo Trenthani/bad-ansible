@@ -1,0 +1,31 @@
+---
+#Openstack lab environment
+cloud_infra_vars_os_servers:
+  - name: app1
+    metadata: group=apps, deployment_name=QA
+    flavor: m2.small
+    keypair: "{{ os_keypair }}"
+    image: "{{ os_image }}"
+    sg: sg_app
+
+  - name: app2
+    metadata: group=apps, deployment_name=QA
+    flavor: m2.small
+    keypair: "{{ os_keypair }}"
+    image: "{{ os_image }}"
+    sg: sg_app
+    
+  - name: db
+    metadata: group=appdbs, deployment_name=QA
+    flavor: m2.small
+    keypair: "{{ os_keypair }}"
+    networks: 
+    image: "{{ os_image }}"
+    sg: sg_db
+
+  - name: frontend
+    metadata: group=frontends, deployment_name=QA
+    flavor: m2.small
+    keypair: "{{ os_keypair }}"
+    image: "{{ os_image }}"
+    sg: sg_frtd
