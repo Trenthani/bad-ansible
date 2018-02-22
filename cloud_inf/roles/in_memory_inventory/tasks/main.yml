@@ -1,0 +1,19 @@
+---
+# tasks file for in_memory_inventory
+- name: fetch openstack instances
+  os_server_facts:
+    cloud: "{{ os_cloud }}"
+  register: os_server_facts
+  tags:
+    - facts
+- debug:
+    msg: "here is the hostname: {{ item.public_v4 }} and here is teh instance name: {{ item.name }}"
+  with_items: "{{ os_server_facts.ansible_facts.openstack_servers }}"
+  tags:
+    - debug
+
+- add_host: 
+    name: "{{ item.public_v4 }}"
+    groups: "{{ item.metadata.group }}"
+    #ansible_host: "{{ item.name }}"
+  with_items: "{{ os_server_facts.ansible_facts.openstack_servers }}"

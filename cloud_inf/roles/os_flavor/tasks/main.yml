@@ -1,0 +1,9 @@
+---
+# tasks file for os_flavor
+- name: create flavor
+  os_nova_flavor:
+    name: "{{ item.name }}"
+    ram: "{{ item.ram }}"
+    vcpus: "{{ item.vcpu }}"
+    disk: "{{ item.disk }}"
+  with_items: "{{ flavors }}"

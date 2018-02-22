@@ -1,14 +1,13 @@
 ---
 #stringing all the plays together
-- hosts: Jumpbox
-  vars_files:
-    - ./vars/cloud_infra_vars.yml
-    - ./vars/network_vars.yml
-    - ./vars/flavor_vars.yml
+- hosts: jumpbox
 
   roles:
-   - provision_instances
-   - create_security_groups
+   - { role: create_networks, tags: networks }
+   - { role: create_security_groups, tags: security_groups }
+   - { role: in_memory_inventory, tags: inventory }
+   - { role: provision_instances, tags: provision }
+   
 
 #- include_playbook: wrkstn_setup.yml
 

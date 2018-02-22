@@ -1,0 +1,25 @@
+---
+# tasks file for win_service_config
+- name: install chocolately packages
+  win_chocolatey:
+    name: "{{ item }}"
+    state: latest
+    params: "{{ parameters }}"
+  with_items: "{{ package_name }}"
+  when: ansible_distribution == 'Microsoft Windows Server 2012 R2 Standard'
+
+- win_service:
+    name: "{{ item }}"
+    state: started
+    mode: auto
+  with_items: "{{ service_name }}"
+
+- name: Firewall rule to allow "{{ service_name }}"
+  win_firewall_rule:
+    name: "{{ service_name }}"
+    localport: 22
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes

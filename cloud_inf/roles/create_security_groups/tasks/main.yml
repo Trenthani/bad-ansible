@@ -1,13 +1,30 @@
 ---
 # tasks file for create_security_groups
-- include_tasks: create_networks.yml
-  with_dict: "{{ networks }}"
 
-- include_tasks: create_subnets.yml
-  with_dict: "{{ networks }}"
-
-- include_tasks: create_security_groups.yml
-  with_items: "{{ sg_groups }}"
       
-- include_tasks: create_security_group_rule.yml
+- include_tasks: create_security_group_rules.yml
   with_items: "{{ sg_group_rules }}"
+
+- name: create security group
+  os_security_group:
+    cloud: "{{ os_cloud }}"
+    state: present
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+  with_items: "{{ sg_groups }}"
+
+- name: create security group rule
+  os_security_group_rule:
+    cloud: "{{ os_cloud }}"
+    security_group: "{{ item.sg_name }}"
+    protocol: "{{ item.protocol }}"
+    port_range_min: "{{ item.port_mx }}"
+    port_range_max: "{{ item.port_mn }}"
+    with_items: "{{ sg_group_port_rules }}"
+
+- name: create security group rule - icmp
+  os_security_group_rule:
+    cloud: "{{ os_cloud }}"
+    security_group: "{{ item.sg_name }}"
+    protocol: icmp
+    with_items: "{{ sg_group_icmp_rules }}"

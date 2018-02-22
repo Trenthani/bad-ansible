@@ -1,0 +1,7 @@
+---
+#flavor vars
+flavors:
+  - name: m2.small
+    ram: 2048
+    vcpus: 1
+    disk: 10

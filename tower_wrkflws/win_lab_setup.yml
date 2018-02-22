@@ -1,0 +1,21 @@
+---
+- name: Wintel lab setup
+  hosts: localhost
+  connection: local
+  become: true
+
+  roles:
+    - win_prep
+
+- name: Test windows setup for kerberos
+  hosts: windows
+
+  tasks:
+    - name: test kinit
+      command: "kinit administrator@AD1.${GUID_CAP}.EXAMPLE.OPENTLC.COM {{ vault_ansible_password }}"
+      delegate_to: localhost
+      tags: test
+
+          
+          
+        

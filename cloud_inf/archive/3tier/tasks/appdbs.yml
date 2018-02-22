@@ -1,0 +1,7 @@
+---
+# appdbs playbook
+
+- name: install postgres 
+  include_role: 
+    name: postgres
+       

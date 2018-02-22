@@ -1,0 +1,21 @@
+---
+# tasks file for os_keypair
+- name: test dir
+  stat:
+    path: "{{ public_key_file }}"
+  register: key_dir
+  tags:
+    - test
+
+- name: print test output
+  assert:
+    that: "{{ key_dir.stat.exists }}"
+  tags:
+    - test
+
+- name: create key pair
+  os_keypair:
+    cloud: "{{ os_cloud }}"
+    state: present
+    public_key_file: "{{ public_key_file }}"
+    name: "{{ os_keypair }}"

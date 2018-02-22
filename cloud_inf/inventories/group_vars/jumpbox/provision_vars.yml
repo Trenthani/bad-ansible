@@ -1,0 +1,7 @@
+---
+# common vars
+os_keypair: osp_lab_key
+os_cloud: ospcloud
+os_image: rhel-guest
+public_key_file: /home/cloud-user/.ssh/osp_keypair.pub
+

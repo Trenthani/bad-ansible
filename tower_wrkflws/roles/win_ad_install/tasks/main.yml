@@ -1,0 +1,47 @@
+---
+# tasks file for win_ad_install
+
+- name: install AD-Domain-Services
+  win_feature:
+    name: AD-Domain-Services
+    state: present
+
+- name: debug
+  debug:
+    var: inventory_hostname[host] 
+
+- name: error handling
+  block:
+    - name: domain name
+      win_domain:
+        dns_domain_name: "{{ ad_domain_name }}"
+        safe_mode_password: "{{ ansible_password }}"
+      register: domain_name_result
+      
+    - name: win reboot
+      win_reboot:
+        msg: reboot initiated by ansible
+      when: (domain_name_result.reboot_required == true) 
+
+  rescue:
+    - name: win reboot
+      win_reboot:
+        msg: reboot initiated by ansible
+      
+- name: list domains test
+  win_command: "nltest /dclist:ad1.{{ GUID }}.example.opentlc.com"
+  retries: 10
+  delay: 5
+  register: nltest_result
+  tags: debug
+
+- name: debug
+  debug:
+    var: nltest_result
+  tags: debug
+
+  
+
+
+
+

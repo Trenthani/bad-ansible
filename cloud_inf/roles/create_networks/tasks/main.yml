@@ -1,0 +1,42 @@
+---
+# tasks file for create_networks
+- name: create networks
+  os_network:
+    name: "{{ item.name }}"
+    cloud: "{{ os_cloud }}"
+    external: "{{ item.external }}"
+    state: present
+  with_items: "{{ networks }}"
+  tags:
+    - create_net
+
+- name: create subnets
+  os_subnet:
+    state: present
+    cloud: "{{ os_cloud }}"
+    network_name: "{{ item.name }}"
+    name: "{{ item.name}}_subnet"
+    cidr: "{{ item.cidr }}"
+    dns_nameservers: 
+      - "{{ item.dns1 }}"
+      - "{{ item.dns2 }}"
+    host_routes:
+      - destination: "{{ item.route_dest }}"
+        nexthop: "{{ item.route_next }}"
+  with_items: "{{ networks }}"
+  register: results
+  tags:
+    - create_subnet
+
+- name: create router
+  os_router:
+    cloud: "{{ os_cloud }}"
+    interfaces: private_subnet
+    name: osp_router
+    network: ext_physical
+    external_fixed_ips: 
+      - subnet: ext_physical_subnet
+    state: present
+  tags:
+    - create_router
+

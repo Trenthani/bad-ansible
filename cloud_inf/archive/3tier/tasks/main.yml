@@ -1,0 +1,14 @@
+---
+# tasks file for 3tier
+- import_playbook: common.yml 
+  tags:
+    - common
+- import_playbook: frontends.yml
+  tags:
+    - frontend
+- import_playbook: apps.yml
+  tags:
+    - apps
+- import_playbook: appdbs.yml
+  tags:
+    - appdbs

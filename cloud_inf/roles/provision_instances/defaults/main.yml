@@ -3,3 +3,4 @@
 os_keypair: ""
 os_cloud: ""
 os_image: ""
+public_key_file: ""

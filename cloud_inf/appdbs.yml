@@ -1,0 +1,11 @@
+---
+# appdbs playbook
+- name: configure and manage appdbs
+  hosts: appdbs
+  become: true
+
+  tasks:
+    - name: install postgres 
+      include_role: 
+        name: postgres
+       

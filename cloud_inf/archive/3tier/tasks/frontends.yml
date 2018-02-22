@@ -1,0 +1,11 @@
+---
+  # frontends playbook
+  - name: configure and manage frontends
+    hosts: frontends
+    become: true
+  
+    tasks:
+      - name: install haproxy 
+        include_role: 
+          name: haproxy
+         

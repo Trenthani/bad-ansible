@@ -1,0 +1,20 @@
+- hosts: jumphost
+  vars: 
+    cloud: ospcloud
+    net_name: internal_physical
+
+  tasks:
+
+  - name: create subnets
+    os_subnet:
+      state: absent
+      cloud: "{{ cloud }}"
+      network_name: "{{ net_name }}"
+      name: "{{ net_name}}_subnet"
+
+  - name: create networks
+    os_network:
+      name: "{{ net_name }}"
+      cloud: "{{ cloud }}"
+      # external: "{{ item.external }}"
+      state: absent   

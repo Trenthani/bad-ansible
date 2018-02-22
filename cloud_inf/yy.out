@@ -1,0 +1,472 @@
+
+PLAY [configure 3tier site] *************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************
+ok: [jumphost]
+
+TASK [in_memory_inventory : fetch openstack instances] **********************************************************************************************************************************************
+ok: [jumphost]
+
+TASK [in_memory_inventory : debug] ******************************************************************************************************************************************************************
+ok: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:3e:a3:14', u'version': 4, u'addr': u'10.10.10.7', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:b7:04:9d', u'version': 4, u'addr': u'20.20.20.5', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000004', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:51.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'88dfcd57-b2e2-44d1-a48c-f497d2f6fbfa', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.7', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:59:51.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.7', u'updated': u'2018-02-21T20:59:50Z', u'hostId': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.7', u'public_v6': u'', u'private_v4': u'20.20.20.5', u'host_id': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000004', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:51.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'name': u'frontend', u'created': u'2018-02-21T20:59:35Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'frontends'}}) => {
+    "changed": false, 
+    "item": {
+        "OS-DCF:diskConfig": "MANUAL", 
+        "OS-EXT-AZ:availability_zone": "nova", 
+        "OS-EXT-SRV-ATTR:host": "comp00.example.com", 
+        "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp00.example.com", 
+        "OS-EXT-SRV-ATTR:instance_name": "instance-00000004", 
+        "OS-EXT-STS:power_state": 1, 
+        "OS-EXT-STS:task_state": null, 
+        "OS-EXT-STS:vm_state": "active", 
+        "OS-SRV-USG:launched_at": "2018-02-21T20:59:51.000000", 
+        "OS-SRV-USG:terminated_at": null, 
+        "accessIPv4": "10.10.10.7", 
+        "accessIPv6": "", 
+        "addresses": {
+            "internal_physical": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:3e:a3:14", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "10.10.10.7", 
+                    "version": 4
+                }
+            ], 
+            "private": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:b7:04:9d", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "20.20.20.5", 
+                    "version": 4
+                }
+            ]
+        }, 
+        "adminPass": null, 
+        "az": "nova", 
+        "cloud": "ospcloud", 
+        "config_drive": "", 
+        "created": "2018-02-21T20:59:35Z", 
+        "disk_config": "MANUAL", 
+        "flavor": {
+            "id": "96038c54-5b92-46fd-a2a5-89467b8b4bae"
+        }, 
+        "has_config_drive": false, 
+        "hostId": "59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a", 
+        "host_id": "59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a", 
+        "id": "88dfcd57-b2e2-44d1-a48c-f497d2f6fbfa", 
+        "image": {
+            "id": "b75f74c0-1d51-4153-9ef7-eeba39ca574e"
+        }, 
+        "interface_ip": "10.10.10.7", 
+        "key_name": "osp_lab_key", 
+        "launched_at": "2018-02-21T20:59:51.000000", 
+        "location": {
+            "cloud": "ospcloud", 
+            "project": {
+                "domain_id": null, 
+                "domain_name": null, 
+                "id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+                "name": "admin"
+            }, 
+            "region_name": "RegionOne", 
+            "zone": "nova"
+        }, 
+        "metadata": {
+            " deployment_name": "QA", 
+            "group": "frontends"
+        }, 
+        "name": "frontend", 
+        "networks": {}, 
+        "os-extended-volumes:volumes_attached": [], 
+        "power_state": 1, 
+        "private_v4": "20.20.20.5", 
+        "progress": 0, 
+        "project_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "properties": {
+            "OS-DCF:diskConfig": "MANUAL", 
+            "OS-EXT-AZ:availability_zone": "nova", 
+            "OS-EXT-SRV-ATTR:host": "comp00.example.com", 
+            "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp00.example.com", 
+            "OS-EXT-SRV-ATTR:instance_name": "instance-00000004", 
+            "OS-EXT-STS:power_state": 1, 
+            "OS-EXT-STS:task_state": null, 
+            "OS-EXT-STS:vm_state": "active", 
+            "OS-SRV-USG:launched_at": "2018-02-21T20:59:51.000000", 
+            "OS-SRV-USG:terminated_at": null, 
+            "os-extended-volumes:volumes_attached": []
+        }, 
+        "public_v4": "10.10.10.7", 
+        "public_v6": "", 
+        "region": "RegionOne", 
+        "security_groups": [
+            {
+                "name": "default"
+            }, 
+            {
+                "name": "default"
+            }
+        ], 
+        "status": "ACTIVE", 
+        "task_state": null, 
+        "tenant_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "terminated_at": null, 
+        "updated": "2018-02-21T20:59:50Z", 
+        "user_id": "97656d07875c40b38805582946989e49", 
+        "vm_state": "active", 
+        "volumes": []
+    }, 
+    "msg": "here is the hostname: 10.10.10.7 and here is teh instance name: frontend"
+}
+ok: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:11:af:6a', u'version': 4, u'addr': u'10.10.10.14', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:96:4e:c4', u'version': 4, u'addr': u'20.20.20.9', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000003', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:17.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'35530e1a-047e-4da3-81c2-ee2ac220fd8a', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.14', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:59:17.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.14', u'updated': u'2018-02-21T20:59:16Z', u'hostId': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.14', u'public_v6': u'', u'private_v4': u'20.20.20.9', u'host_id': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000003', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:17.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'name': u'db', u'created': u'2018-02-21T20:59:00Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'appdbs'}}) => {
+    "changed": false, 
+    "item": {
+        "OS-DCF:diskConfig": "MANUAL", 
+        "OS-EXT-AZ:availability_zone": "nova", 
+        "OS-EXT-SRV-ATTR:host": "comp01.example.com", 
+        "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp01.example.com", 
+        "OS-EXT-SRV-ATTR:instance_name": "instance-00000003", 
+        "OS-EXT-STS:power_state": 1, 
+        "OS-EXT-STS:task_state": null, 
+        "OS-EXT-STS:vm_state": "active", 
+        "OS-SRV-USG:launched_at": "2018-02-21T20:59:17.000000", 
+        "OS-SRV-USG:terminated_at": null, 
+        "accessIPv4": "10.10.10.14", 
+        "accessIPv6": "", 
+        "addresses": {
+            "internal_physical": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:11:af:6a", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "10.10.10.14", 
+                    "version": 4
+                }
+            ], 
+            "private": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:96:4e:c4", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "20.20.20.9", 
+                    "version": 4
+                }
+            ]
+        }, 
+        "adminPass": null, 
+        "az": "nova", 
+        "cloud": "ospcloud", 
+        "config_drive": "", 
+        "created": "2018-02-21T20:59:00Z", 
+        "disk_config": "MANUAL", 
+        "flavor": {
+            "id": "96038c54-5b92-46fd-a2a5-89467b8b4bae"
+        }, 
+        "has_config_drive": false, 
+        "hostId": "b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80", 
+        "host_id": "b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80", 
+        "id": "35530e1a-047e-4da3-81c2-ee2ac220fd8a", 
+        "image": {
+            "id": "b75f74c0-1d51-4153-9ef7-eeba39ca574e"
+        }, 
+        "interface_ip": "10.10.10.14", 
+        "key_name": "osp_lab_key", 
+        "launched_at": "2018-02-21T20:59:17.000000", 
+        "location": {
+            "cloud": "ospcloud", 
+            "project": {
+                "domain_id": null, 
+                "domain_name": null, 
+                "id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+                "name": "admin"
+            }, 
+            "region_name": "RegionOne", 
+            "zone": "nova"
+        }, 
+        "metadata": {
+            " deployment_name": "QA", 
+            "group": "appdbs"
+        }, 
+        "name": "db", 
+        "networks": {}, 
+        "os-extended-volumes:volumes_attached": [], 
+        "power_state": 1, 
+        "private_v4": "20.20.20.9", 
+        "progress": 0, 
+        "project_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "properties": {
+            "OS-DCF:diskConfig": "MANUAL", 
+            "OS-EXT-AZ:availability_zone": "nova", 
+            "OS-EXT-SRV-ATTR:host": "comp01.example.com", 
+            "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp01.example.com", 
+            "OS-EXT-SRV-ATTR:instance_name": "instance-00000003", 
+            "OS-EXT-STS:power_state": 1, 
+            "OS-EXT-STS:task_state": null, 
+            "OS-EXT-STS:vm_state": "active", 
+            "OS-SRV-USG:launched_at": "2018-02-21T20:59:17.000000", 
+            "OS-SRV-USG:terminated_at": null, 
+            "os-extended-volumes:volumes_attached": []
+        }, 
+        "public_v4": "10.10.10.14", 
+        "public_v6": "", 
+        "region": "RegionOne", 
+        "security_groups": [
+            {
+                "name": "default"
+            }, 
+            {
+                "name": "default"
+            }
+        ], 
+        "status": "ACTIVE", 
+        "task_state": null, 
+        "tenant_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "terminated_at": null, 
+        "updated": "2018-02-21T20:59:16Z", 
+        "user_id": "97656d07875c40b38805582946989e49", 
+        "vm_state": "active", 
+        "volumes": []
+    }, 
+    "msg": "here is the hostname: 10.10.10.14 and here is teh instance name: db"
+}
+ok: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:f2:d5:70', u'version': 4, u'addr': u'10.10.10.10', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:8d:c2:48', u'version': 4, u'addr': u'20.20.20.3', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000002', u'OS-SRV-USG:launched_at': u'2018-02-21T20:58:42.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'737326d0-3385-4d1d-b984-935dba42e40c', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.10', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:58:42.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.10', u'updated': u'2018-02-21T20:58:41Z', u'hostId': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.10', u'public_v6': u'', u'private_v4': u'20.20.20.3', u'host_id': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000002', u'OS-SRV-USG:launched_at': u'2018-02-21T20:58:42.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'name': u'app2', u'created': u'2018-02-21T20:57:57Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'apps'}}) => {
+    "changed": false, 
+    "item": {
+        "OS-DCF:diskConfig": "MANUAL", 
+        "OS-EXT-AZ:availability_zone": "nova", 
+        "OS-EXT-SRV-ATTR:host": "comp00.example.com", 
+        "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp00.example.com", 
+        "OS-EXT-SRV-ATTR:instance_name": "instance-00000002", 
+        "OS-EXT-STS:power_state": 1, 
+        "OS-EXT-STS:task_state": null, 
+        "OS-EXT-STS:vm_state": "active", 
+        "OS-SRV-USG:launched_at": "2018-02-21T20:58:42.000000", 
+        "OS-SRV-USG:terminated_at": null, 
+        "accessIPv4": "10.10.10.10", 
+        "accessIPv6": "", 
+        "addresses": {
+            "internal_physical": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:f2:d5:70", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "10.10.10.10", 
+                    "version": 4
+                }
+            ], 
+            "private": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:8d:c2:48", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "20.20.20.3", 
+                    "version": 4
+                }
+            ]
+        }, 
+        "adminPass": null, 
+        "az": "nova", 
+        "cloud": "ospcloud", 
+        "config_drive": "", 
+        "created": "2018-02-21T20:57:57Z", 
+        "disk_config": "MANUAL", 
+        "flavor": {
+            "id": "96038c54-5b92-46fd-a2a5-89467b8b4bae"
+        }, 
+        "has_config_drive": false, 
+        "hostId": "59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a", 
+        "host_id": "59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a", 
+        "id": "737326d0-3385-4d1d-b984-935dba42e40c", 
+        "image": {
+            "id": "b75f74c0-1d51-4153-9ef7-eeba39ca574e"
+        }, 
+        "interface_ip": "10.10.10.10", 
+        "key_name": "osp_lab_key", 
+        "launched_at": "2018-02-21T20:58:42.000000", 
+        "location": {
+            "cloud": "ospcloud", 
+            "project": {
+                "domain_id": null, 
+                "domain_name": null, 
+                "id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+                "name": "admin"
+            }, 
+            "region_name": "RegionOne", 
+            "zone": "nova"
+        }, 
+        "metadata": {
+            " deployment_name": "QA", 
+            "group": "apps"
+        }, 
+        "name": "app2", 
+        "networks": {}, 
+        "os-extended-volumes:volumes_attached": [], 
+        "power_state": 1, 
+        "private_v4": "20.20.20.3", 
+        "progress": 0, 
+        "project_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "properties": {
+            "OS-DCF:diskConfig": "MANUAL", 
+            "OS-EXT-AZ:availability_zone": "nova", 
+            "OS-EXT-SRV-ATTR:host": "comp00.example.com", 
+            "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp00.example.com", 
+            "OS-EXT-SRV-ATTR:instance_name": "instance-00000002", 
+            "OS-EXT-STS:power_state": 1, 
+            "OS-EXT-STS:task_state": null, 
+            "OS-EXT-STS:vm_state": "active", 
+            "OS-SRV-USG:launched_at": "2018-02-21T20:58:42.000000", 
+            "OS-SRV-USG:terminated_at": null, 
+            "os-extended-volumes:volumes_attached": []
+        }, 
+        "public_v4": "10.10.10.10", 
+        "public_v6": "", 
+        "region": "RegionOne", 
+        "security_groups": [
+            {
+                "name": "default"
+            }, 
+            {
+                "name": "default"
+            }
+        ], 
+        "status": "ACTIVE", 
+        "task_state": null, 
+        "tenant_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "terminated_at": null, 
+        "updated": "2018-02-21T20:58:41Z", 
+        "user_id": "97656d07875c40b38805582946989e49", 
+        "vm_state": "active", 
+        "volumes": []
+    }, 
+    "msg": "here is the hostname: 10.10.10.10 and here is teh instance name: app2"
+}
+ok: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:8e:9a:57', u'version': 4, u'addr': u'10.10.10.5', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:22:ff:aa', u'version': 4, u'addr': u'20.20.20.4', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000001', u'OS-SRV-USG:launched_at': u'2018-02-21T20:57:40.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'afd4ab24-8158-4103-ad02-8ff7ce364157', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.5', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:57:40.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.5', u'updated': u'2018-02-21T20:57:39Z', u'hostId': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.5', u'public_v6': u'', u'private_v4': u'20.20.20.4', u'host_id': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000001', u'OS-SRV-USG:launched_at': u'2018-02-21T20:57:40.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'name': u'app1', u'created': u'2018-02-21T20:56:52Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'apps'}}) => {
+    "changed": false, 
+    "item": {
+        "OS-DCF:diskConfig": "MANUAL", 
+        "OS-EXT-AZ:availability_zone": "nova", 
+        "OS-EXT-SRV-ATTR:host": "comp01.example.com", 
+        "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp01.example.com", 
+        "OS-EXT-SRV-ATTR:instance_name": "instance-00000001", 
+        "OS-EXT-STS:power_state": 1, 
+        "OS-EXT-STS:task_state": null, 
+        "OS-EXT-STS:vm_state": "active", 
+        "OS-SRV-USG:launched_at": "2018-02-21T20:57:40.000000", 
+        "OS-SRV-USG:terminated_at": null, 
+        "accessIPv4": "10.10.10.5", 
+        "accessIPv6": "", 
+        "addresses": {
+            "internal_physical": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:8e:9a:57", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "10.10.10.5", 
+                    "version": 4
+                }
+            ], 
+            "private": [
+                {
+                    "OS-EXT-IPS-MAC:mac_addr": "fa:16:3e:22:ff:aa", 
+                    "OS-EXT-IPS:type": "fixed", 
+                    "addr": "20.20.20.4", 
+                    "version": 4
+                }
+            ]
+        }, 
+        "adminPass": null, 
+        "az": "nova", 
+        "cloud": "ospcloud", 
+        "config_drive": "", 
+        "created": "2018-02-21T20:56:52Z", 
+        "disk_config": "MANUAL", 
+        "flavor": {
+            "id": "96038c54-5b92-46fd-a2a5-89467b8b4bae"
+        }, 
+        "has_config_drive": false, 
+        "hostId": "b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80", 
+        "host_id": "b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80", 
+        "id": "afd4ab24-8158-4103-ad02-8ff7ce364157", 
+        "image": {
+            "id": "b75f74c0-1d51-4153-9ef7-eeba39ca574e"
+        }, 
+        "interface_ip": "10.10.10.5", 
+        "key_name": "osp_lab_key", 
+        "launched_at": "2018-02-21T20:57:40.000000", 
+        "location": {
+            "cloud": "ospcloud", 
+            "project": {
+                "domain_id": null, 
+                "domain_name": null, 
+                "id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+                "name": "admin"
+            }, 
+            "region_name": "RegionOne", 
+            "zone": "nova"
+        }, 
+        "metadata": {
+            " deployment_name": "QA", 
+            "group": "apps"
+        }, 
+        "name": "app1", 
+        "networks": {}, 
+        "os-extended-volumes:volumes_attached": [], 
+        "power_state": 1, 
+        "private_v4": "20.20.20.4", 
+        "progress": 0, 
+        "project_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "properties": {
+            "OS-DCF:diskConfig": "MANUAL", 
+            "OS-EXT-AZ:availability_zone": "nova", 
+            "OS-EXT-SRV-ATTR:host": "comp01.example.com", 
+            "OS-EXT-SRV-ATTR:hypervisor_hostname": "comp01.example.com", 
+            "OS-EXT-SRV-ATTR:instance_name": "instance-00000001", 
+            "OS-EXT-STS:power_state": 1, 
+            "OS-EXT-STS:task_state": null, 
+            "OS-EXT-STS:vm_state": "active", 
+            "OS-SRV-USG:launched_at": "2018-02-21T20:57:40.000000", 
+            "OS-SRV-USG:terminated_at": null, 
+            "os-extended-volumes:volumes_attached": []
+        }, 
+        "public_v4": "10.10.10.5", 
+        "public_v6": "", 
+        "region": "RegionOne", 
+        "security_groups": [
+            {
+                "name": "default"
+            }, 
+            {
+                "name": "default"
+            }
+        ], 
+        "status": "ACTIVE", 
+        "task_state": null, 
+        "tenant_id": "1e3aa106a2f94e93bb328f6bebe8b965", 
+        "terminated_at": null, 
+        "updated": "2018-02-21T20:57:39Z", 
+        "user_id": "97656d07875c40b38805582946989e49", 
+        "vm_state": "active", 
+        "volumes": []
+    }, 
+    "msg": "here is the hostname: 10.10.10.5 and here is teh instance name: app1"
+}
+
+TASK [in_memory_inventory : add_host] ***************************************************************************************************************************************************************
+changed: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:3e:a3:14', u'version': 4, u'addr': u'10.10.10.7', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:b7:04:9d', u'version': 4, u'addr': u'20.20.20.5', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000004', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:51.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'88dfcd57-b2e2-44d1-a48c-f497d2f6fbfa', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.7', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:59:51.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.7', u'updated': u'2018-02-21T20:59:50Z', u'hostId': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.7', u'public_v6': u'', u'private_v4': u'20.20.20.5', u'host_id': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000004', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:51.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'name': u'frontend', u'created': u'2018-02-21T20:59:35Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'frontends'}})
+changed: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:11:af:6a', u'version': 4, u'addr': u'10.10.10.14', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:96:4e:c4', u'version': 4, u'addr': u'20.20.20.9', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000003', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:17.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'35530e1a-047e-4da3-81c2-ee2ac220fd8a', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.14', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:59:17.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.14', u'updated': u'2018-02-21T20:59:16Z', u'hostId': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.14', u'public_v6': u'', u'private_v4': u'20.20.20.9', u'host_id': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000003', u'OS-SRV-USG:launched_at': u'2018-02-21T20:59:17.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'name': u'db', u'created': u'2018-02-21T20:59:00Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'appdbs'}})
+changed: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:f2:d5:70', u'version': 4, u'addr': u'10.10.10.10', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:8d:c2:48', u'version': 4, u'addr': u'20.20.20.3', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000002', u'OS-SRV-USG:launched_at': u'2018-02-21T20:58:42.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'737326d0-3385-4d1d-b984-935dba42e40c', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.10', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:58:42.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.10', u'updated': u'2018-02-21T20:58:41Z', u'hostId': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.10', u'public_v6': u'', u'private_v4': u'20.20.20.3', u'host_id': u'59b9f8bf3d22d1ecfa16e52e12ed870bad9a96c86298184f00241e5a', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp00.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000002', u'OS-SRV-USG:launched_at': u'2018-02-21T20:58:42.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp00.example.com', u'name': u'app2', u'created': u'2018-02-21T20:57:57Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'apps'}})
+changed: [jumphost] => (item={u'vm_state': u'active', u'OS-EXT-STS:task_state': None, u'addresses': {u'internal_physical': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:8e:9a:57', u'version': 4, u'addr': u'10.10.10.5', u'OS-EXT-IPS:type': u'fixed'}], u'private': [{u'OS-EXT-IPS-MAC:mac_addr': u'fa:16:3e:22:ff:aa', u'version': 4, u'addr': u'20.20.20.4', u'OS-EXT-IPS:type': u'fixed'}]}, u'terminated_at': None, u'image': {u'id': u'b75f74c0-1d51-4153-9ef7-eeba39ca574e'}, u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000001', u'OS-SRV-USG:launched_at': u'2018-02-21T20:57:40.000000', u'flavor': {u'id': u'96038c54-5b92-46fd-a2a5-89467b8b4bae'}, u'az': u'nova', u'id': u'afd4ab24-8158-4103-ad02-8ff7ce364157', u'cloud': u'ospcloud', u'os-extended-volumes:volumes_attached': [], u'user_id': u'97656d07875c40b38805582946989e49', u'disk_config': u'MANUAL', u'OS-DCF:diskConfig': u'MANUAL', u'networks': {}, u'accessIPv4': u'10.10.10.5', u'accessIPv6': u'', u'location': {u'project': {u'domain_name': None, u'domain_id': None, u'name': u'admin', u'id': u'1e3aa106a2f94e93bb328f6bebe8b965'}, u'cloud': u'ospcloud', u'region_name': u'RegionOne', u'zone': u'nova'}, u'power_state': 1, u'key_name': u'osp_lab_key', u'progress': 0, u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova', u'launched_at': u'2018-02-21T20:57:40.000000', u'config_drive': u'', u'status': u'ACTIVE', u'interface_ip': u'10.10.10.5', u'updated': u'2018-02-21T20:57:39Z', u'hostId': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'public_v4': u'10.10.10.5', u'public_v6': u'', u'private_v4': u'20.20.20.4', u'host_id': u'b3aa7068069c188c8861a9add78f3de5e78d5181e211b8018415dd80', u'task_state': None, u'properties': {u'OS-EXT-STS:task_state': None, u'OS-EXT-SRV-ATTR:host': u'comp01.example.com', u'OS-SRV-USG:terminated_at': None, u'OS-DCF:diskConfig': u'MANUAL', u'os-extended-volumes:volumes_attached': [], u'OS-EXT-STS:vm_state': u'active', u'OS-EXT-SRV-ATTR:instance_name': u'instance-00000001', u'OS-SRV-USG:launched_at': u'2018-02-21T20:57:40.000000', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'OS-EXT-STS:power_state': 1, u'OS-EXT-AZ:availability_zone': u'nova'}, u'security_groups': [{u'name': u'default'}, {u'name': u'default'}], u'project_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'OS-EXT-SRV-ATTR:hypervisor_hostname': u'comp01.example.com', u'name': u'app1', u'created': u'2018-02-21T20:56:52Z', u'tenant_id': u'1e3aa106a2f94e93bb328f6bebe8b965', u'region': u'RegionOne', u'adminPass': None, u'has_config_drive': False, u'volumes': [], u'metadata': {u' deployment_name': u'QA', u'group': u'apps'}})
+
+PLAY [3tier] ****************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************
+fatal: [10.10.10.14]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: OpenSSH_7.2p2 Ubuntu-4ubuntu2.4, OpenSSL 1.0.2g  1 Mar 2016\r\ndebug1: Reading configuration data ./ssh.cfg\r\ndebug1: ./ssh.cfg line 1: Applying options for workstation-7827.rhpds.opentlc.com\r\ndebug2: resolving \"workstation-7827.rhpds.opentlc.com\" port 22\r\ndebug2: ssh_connect_direct: needpriv 0\r\ndebug1: Connecting to workstation-7827.rhpds.opentlc.com [153.92.39.122] port 22.\r\ndebug1: Connection established.\r\ndebug1: identity file /home/trentm/.ssh/id_rsa type 1\r\ndebug1: key_load_public: No such file or directory\r\ndebug1: identity file /home/trentm/.ssh/id_rsa-cert type -1\r\ndebug1: Enabling compatibility mode for protocol 2.0\r\ndebug1: Local version string SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_6.6.1\r\ndebug1: match: OpenSSH_6.6.1 pat OpenSSH_6.6.1* compat 0x04000000\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to workstation-7827.rhpds.opentlc.com:22 as 'cloud-user'\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:47\r\ndebug3: load_hostkeys: loaded 1 keys from workstation-7827.rhpds.opentlc.com\r\ndebug3: order_hostkeyalgs: prefer hostkeyalgs: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc,3des-cbc\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc,3des-cbc\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com,zlib\r\ndebug2: compression stoc: none,zlib@openssh.com,zlib\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1\r\ndebug2: host key algorithms: ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se\r\ndebug2: ciphers stoc: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se\r\ndebug2: MACs ctos: hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96\r\ndebug2: MACs stoc: hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256@libssh.org\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:ztRJAqdV6iu+yRrrP42PaGm107SEMPdYVjGXZuL3EAo\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:47\r\ndebug3: load_hostkeys: loaded 1 keys from workstation-7827.rhpds.opentlc.com\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:48\r\ndebug3: load_hostkeys: loaded 1 keys from 153.92.39.122\r\ndebug1: Host 'workstation-7827.rhpds.opentlc.com' is known and matches the ECDSA host key.\r\ndebug1: Found key in /home/trentm/.ssh/known_hosts:47\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: key: /home/trentm/.ssh/id_rsa (0x7fffd8f91dc0), explicit\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,keyboard-interactive\r\ndebug3: start over, passed a different list publickey,keyboard-interactive\r\ndebug3: preferred publickey,keyboard-interactive\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: keyboard-interactive\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering RSA public key: /home/trentm/.ssh/id_rsa\r\ndebug3: send_pubkey_test\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,keyboard-interactive\r\ndebug2: we did not send a packet, disable method\r\ndebug3: authmethod_lookup keyboard-interactive\r\ndebug3: remaining preferred: \r\ndebug3: authmethod_is_enabled keyboard-interactive\r\ndebug1: Next authentication method: keyboard-interactive\r\ndebug2: userauth_kbdint\r\ndebug3: send packet: type 50\r\ndebug2: we sent a keyboard-interactive packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug2: input_userauth_info_req\r\ndebug2: input_userauth_info_req: num_prompts 1\r\nConnection timed out during banner exchange\r\n", "unreachable": true}
+fatal: [10.10.10.7]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: OpenSSH_7.2p2 Ubuntu-4ubuntu2.4, OpenSSL 1.0.2g  1 Mar 2016\r\ndebug1: Reading configuration data ./ssh.cfg\r\ndebug1: ./ssh.cfg line 1: Applying options for workstation-7827.rhpds.opentlc.com\r\ndebug2: resolving \"workstation-7827.rhpds.opentlc.com\" port 22\r\ndebug2: ssh_connect_direct: needpriv 0\r\ndebug1: Connecting to workstation-7827.rhpds.opentlc.com [153.92.39.122] port 22.\r\ndebug1: Connection established.\r\ndebug1: identity file /home/trentm/.ssh/id_rsa type 1\r\ndebug1: key_load_public: No such file or directory\r\ndebug1: identity file /home/trentm/.ssh/id_rsa-cert type -1\r\ndebug1: Enabling compatibility mode for protocol 2.0\r\ndebug1: Local version string SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_6.6.1\r\ndebug1: match: OpenSSH_6.6.1 pat OpenSSH_6.6.1* compat 0x04000000\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to workstation-7827.rhpds.opentlc.com:22 as 'cloud-user'\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:47\r\ndebug3: load_hostkeys: loaded 1 keys from workstation-7827.rhpds.opentlc.com\r\ndebug3: order_hostkeyalgs: prefer hostkeyalgs: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc,3des-cbc\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc,3des-cbc\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com,zlib\r\ndebug2: compression stoc: none,zlib@openssh.com,zlib\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1\r\ndebug2: host key algorithms: ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se\r\ndebug2: ciphers stoc: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se\r\ndebug2: MACs ctos: hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96\r\ndebug2: MACs stoc: hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256@libssh.org\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:ztRJAqdV6iu+yRrrP42PaGm107SEMPdYVjGXZuL3EAo\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:47\r\ndebug3: load_hostkeys: loaded 1 keys from workstation-7827.rhpds.opentlc.com\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:48\r\ndebug3: load_hostkeys: loaded 1 keys from 153.92.39.122\r\ndebug1: Host 'workstation-7827.rhpds.opentlc.com' is known and matches the ECDSA host key.\r\ndebug1: Found key in /home/trentm/.ssh/known_hosts:47\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: key: /home/trentm/.ssh/id_rsa (0x7fffcdb08dc0), explicit\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,keyboard-interactive\r\ndebug3: start over, passed a different list publickey,keyboard-interactive\r\ndebug3: preferred publickey,keyboard-interactive\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: keyboard-interactive\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering RSA public key: /home/trentm/.ssh/id_rsa\r\ndebug3: send_pubkey_test\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,keyboard-interactive\r\ndebug2: we did not send a packet, disable method\r\ndebug3: authmethod_lookup keyboard-interactive\r\ndebug3: remaining preferred: \r\ndebug3: authmethod_is_enabled keyboard-interactive\r\ndebug1: Next authentication method: keyboard-interactive\r\ndebug2: userauth_kbdint\r\ndebug3: send packet: type 50\r\ndebug2: we sent a keyboard-interactive packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug2: input_userauth_info_req\r\ndebug2: input_userauth_info_req: num_prompts 1\r\nConnection timed out during banner exchange\r\n", "unreachable": true}
+fatal: [10.10.10.10]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: OpenSSH_7.2p2 Ubuntu-4ubuntu2.4, OpenSSL 1.0.2g  1 Mar 2016\r\ndebug1: Reading configuration data ./ssh.cfg\r\ndebug1: ./ssh.cfg line 1: Applying options for workstation-7827.rhpds.opentlc.com\r\ndebug2: resolving \"workstation-7827.rhpds.opentlc.com\" port 22\r\ndebug2: ssh_connect_direct: needpriv 0\r\ndebug1: Connecting to workstation-7827.rhpds.opentlc.com [153.92.39.122] port 22.\r\ndebug1: Connection established.\r\ndebug1: identity file /home/trentm/.ssh/id_rsa type 1\r\ndebug1: key_load_public: No such file or directory\r\ndebug1: identity file /home/trentm/.ssh/id_rsa-cert type -1\r\ndebug1: Enabling compatibility mode for protocol 2.0\r\ndebug1: Local version string SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.4\r\ndebug1: Remote protocol version 2.0, remote software version OpenSSH_6.6.1\r\ndebug1: match: OpenSSH_6.6.1 pat OpenSSH_6.6.1* compat 0x04000000\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug1: Authenticating to workstation-7827.rhpds.opentlc.com:22 as 'cloud-user'\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:47\r\ndebug3: load_hostkeys: loaded 1 keys from workstation-7827.rhpds.opentlc.com\r\ndebug3: order_hostkeyalgs: prefer hostkeyalgs: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521\r\ndebug3: send packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT sent\r\ndebug3: receive packet: type 20\r\ndebug1: SSH2_MSG_KEXINIT received\r\ndebug2: local client KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,ext-info-c\r\ndebug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256,ssh-rsa\r\ndebug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc,3des-cbc\r\ndebug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc,3des-cbc\r\ndebug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1\r\ndebug2: compression ctos: none,zlib@openssh.com,zlib\r\ndebug2: compression stoc: none,zlib@openssh.com,zlib\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug2: peer server KEXINIT proposal\r\ndebug2: KEX algorithms: curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1\r\ndebug2: host key algorithms: ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519\r\ndebug2: ciphers ctos: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se\r\ndebug2: ciphers stoc: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour,rijndael-cbc@lysator.liu.se\r\ndebug2: MACs ctos: hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96\r\ndebug2: MACs stoc: hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96\r\ndebug2: compression ctos: none,zlib@openssh.com\r\ndebug2: compression stoc: none,zlib@openssh.com\r\ndebug2: languages ctos: \r\ndebug2: languages stoc: \r\ndebug2: first_kex_follows 0 \r\ndebug2: reserved 0 \r\ndebug1: kex: algorithm: curve25519-sha256@libssh.org\r\ndebug1: kex: host key algorithm: ecdsa-sha2-nistp256\r\ndebug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none\r\ndebug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none\r\ndebug3: send packet: type 30\r\ndebug1: expecting SSH2_MSG_KEX_ECDH_REPLY\r\ndebug3: receive packet: type 31\r\ndebug1: Server host key: ecdsa-sha2-nistp256 SHA256:ztRJAqdV6iu+yRrrP42PaGm107SEMPdYVjGXZuL3EAo\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:47\r\ndebug3: load_hostkeys: loaded 1 keys from workstation-7827.rhpds.opentlc.com\r\ndebug3: hostkeys_foreach: reading file \"/home/trentm/.ssh/known_hosts\"\r\ndebug3: record_hostkey: found key type ECDSA in file /home/trentm/.ssh/known_hosts:48\r\ndebug3: load_hostkeys: loaded 1 keys from 153.92.39.122\r\ndebug1: Host 'workstation-7827.rhpds.opentlc.com' is known and matches the ECDSA host key.\r\ndebug1: Found key in /home/trentm/.ssh/known_hosts:47\r\ndebug3: send packet: type 21\r\ndebug2: set_newkeys: mode 1\r\ndebug1: rekey after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS sent\r\ndebug1: expecting SSH2_MSG_NEWKEYS\r\ndebug3: receive packet: type 21\r\ndebug2: set_newkeys: mode 0\r\ndebug1: rekey after 134217728 blocks\r\ndebug1: SSH2_MSG_NEWKEYS received\r\ndebug2: key: /home/trentm/.ssh/id_rsa (0x7fffc9276dc0), explicit\r\ndebug3: send packet: type 5\r\ndebug3: receive packet: type 6\r\ndebug2: service_accept: ssh-userauth\r\ndebug1: SSH2_MSG_SERVICE_ACCEPT received\r\ndebug3: send packet: type 50\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,keyboard-interactive\r\ndebug3: start over, passed a different list publickey,keyboard-interactive\r\ndebug3: preferred publickey,keyboard-interactive\r\ndebug3: authmethod_lookup publickey\r\ndebug3: remaining preferred: keyboard-interactive\r\ndebug3: authmethod_is_enabled publickey\r\ndebug1: Next authentication method: publickey\r\ndebug1: Offering RSA public key: /home/trentm/.ssh/id_rsa\r\ndebug3: send_pubkey_test\r\ndebug3: send packet: type 50\r\ndebug2: we sent a publickey packet, wait for reply\r\ndebug3: receive packet: type 51\r\ndebug1: Authentications that can continue: publickey,keyboard-interactive\r\ndebug2: we did not send a packet, disable method\r\ndebug3: authmethod_lookup keyboard-interactive\r\ndebug3: remaining preferred: \r\ndebug3: authmethod_is_enabled keyboard-interactive\r\ndebug1: Next authentication method: keyboard-interactive\r\ndebug2: userauth_kbdint\r\ndebug3: send packet: type 50\r\ndebug2: we sent a keyboard-interactive packet, wait for reply\r\ndebug3: receive packet: type 60\r\ndebug2: input_userauth_info_req\r\ndebug2: input_userauth_info_req: num_prompts 1\r\nConnection timed out during banner exchange\r\n", "unreachable": true}
+fatal: [jumphost]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh_exchange_identification: Connection closed by remote host\r\n", "unreachable": true}
+fatal: [10.10.10.5]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: OpenSSH_7.2p2 Ubuntu-4ubuntu2.4, OpenSSL 1.0.2g  1 Mar 2016\r\ndebug1: Reading configuration data ./ssh.cfg\r\ndebug1: ./ssh.cfg line 1: Applying options for workstation-7827.rhpds.opentlc.com\r\ndebug2: resolving \"workstation-7827.rhpds.opentlc.com\" port 22\r\ndebug2: ssh_connect_direct: needpriv 0\r\ndebug1: Connecting to workstation-7827.rhpds.opentlc.com [153.92.39.122] port 22.\r\ndebug1: Connection established.\r\ndebug1: identity file /home/trentm/.ssh/id_rsa type 1\r\ndebug1: key_load_public: No such file or directory\r\ndebug1: identity file /home/trentm/.ssh/id_rsa-cert type -1\r\ndebug1: Enabling compatibility mode for protocol 2.0\r\ndebug1: Local version string SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.4\r\nssh_exchange_identification: Connection closed by remote host\r\nssh_exchange_identification: Connection closed by remote host\r\n", "unreachable": true}
+fatal: [workstation-7827.rhpds.opentlc.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh_exchange_identification: Connection closed by remote host\r\n", "unreachable": true}
+	to retry, use: --limit @/mnt/c/temp/git/bad-ansible/cloud_inf/3tier.retry
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+10.10.10.10                : ok=0    changed=0    unreachable=1    failed=0   
+10.10.10.14                : ok=0    changed=0    unreachable=1    failed=0   
+10.10.10.5                 : ok=0    changed=0    unreachable=1    failed=0   
+10.10.10.7                 : ok=0    changed=0    unreachable=1    failed=0   
+jumphost                   : ok=4    changed=1    unreachable=1    failed=0   
+workstation-7827.rhpds.opentlc.com : ok=0    changed=0    unreachable=1    failed=0   
+

@@ -1,0 +1,10 @@
+---
+# add ad users
+- hosts: ad1
+
+  roles:
+    - { role: win_ad_install }
+    - { role: win_service_config }
+    - { role: win_ad_user, vars_files: ./vars/user_vars.yml }
+
+    

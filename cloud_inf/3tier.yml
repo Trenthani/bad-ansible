@@ -1,0 +1,18 @@
+---
+# 3tier playbook
+- name: configure 3tier site
+  hosts: jumpbox
+  roles:
+    - { role: in_memory_inventory, tags: inventory }
+
+
+
+- name: 3tier
+  hosts: all
+      
+  roles:
+    - { role: tomcat, when: "'groupname' == 'apps'", tags: "tomcat,apps" }
+    - { role: httpd, when: "'groupname' == 'apps'", tags: "httpd,apps" }
+    - { role: haproxy, when: "'groupname' == 'frontend'", tags: "haproxy,frontend" }
+    - { role: postgres, when: "'groupname' == 'db'", tags: "postgres,db" }
+  

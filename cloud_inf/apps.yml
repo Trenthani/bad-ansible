@@ -1,0 +1,15 @@
+---
+  # apps playbook
+  - name: configure and manage apps
+    hosts: apps
+    become: true
+  
+    tasks:
+      - name: install tomcat
+        include_role: 
+          name: tomcat
+      
+      - name: install httpd 
+        include_role: 
+          name: httpd
+         

@@ -1,7 +1,6 @@
 ---
 # defaults file for create_security_groups
----
-  #Network vars
+#Network vars
   #cloud: ospcloud
   networks:
     # internal_physical:

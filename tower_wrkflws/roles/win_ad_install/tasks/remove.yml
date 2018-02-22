@@ -1,0 +1,22 @@
+---
+  # tasks file for win_ad_install
+  
+- name: remove AD-Domain-Services
+  win_feature:
+    name: AD-Domain-Services
+    state: absent
+    include_sub_features: true
+  register: domain_name_result
+  ignore_errors: true
+  
+- name: win reboot
+  win_reboot:
+    msg: reboot initiated by ansible
+   
+
+
+  
+  
+  
+  
+  

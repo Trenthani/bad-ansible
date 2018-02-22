@@ -1,0 +1,4 @@
+---
+# vars file for tomcat
+tomcat_dir: /usr/share/tomcat/webapps/ansible
+tomcat_index_dir: /usr/share/tomcat/webapps/ansible/index.html
