@@ -1,12 +1,6 @@
 ---
 # 3tier playbook
-- name: configure 3tier site
-  hosts: jumpbox
-  roles:
-    - { role: in_memory_inventory, tags: inventory }
-
-- name: 3tier
-  hosts: all
+- hosts: all
       
   roles:
     - { role: tomcat, when: "'groupname' == 'apps'", tags: "tomcat,apps" }

@@ -8,8 +8,14 @@
    - { role: os_keypair, tags: keypair}
    - { role: create_networks, tags: networks }
    - { role: create_security_groups, tags: security_groups }
-   - { role: in_memory_inventory, tags: inventory }
    - { role: provision_instances, tags: provision }
+   - { role: in_memory_inventory, tags: inventory }
+
+- include_playbook: 3tier.yml
+  tags:
+    - 3tier
+
+
    
 
 #- include_playbook: wrkstn_setup.yml
