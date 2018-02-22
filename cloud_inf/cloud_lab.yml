@@ -3,6 +3,9 @@
 - hosts: jumpbox
 
   roles:
+   - { role: os_image_copy, tags: image_copy }
+   - { role: os_flavor, tags: flavor, vars_files: }
+   - { role: os_keypair, tags: keypair}
    - { role: create_networks, tags: networks }
    - { role: create_security_groups, tags: security_groups }
    - { role: in_memory_inventory, tags: inventory }

@@ -5,8 +5,6 @@
   roles:
     - { role: in_memory_inventory, tags: inventory }
 
-
-
 - name: 3tier
   hosts: all
       
